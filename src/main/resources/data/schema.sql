@@ -1,0 +1,65 @@
+  CREATE TABLE `db`.`provincia` (
+  `id` BIGINT(20) NOT NULL,
+  `descripcion` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`id`));
+  
+  
+  CREATE TABLE `db`.`localidad` (
+  `id` BIGINT(20) NOT NULL,
+  `id_provincia` BIGINT(20)NOT NULL,
+  `descripcion` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`id`,`id_provincia`),
+  CONSTRAINT `FK_LOCALIDAD_POVINCIA_ID` FOREIGN KEY (`id_provincia`) REFERENCES `provincia` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION);
+  
+  
+  CREATE TABLE `db`.`magnitud` (
+  `id` BIGINT(20) NOT NULL,
+  `descripcion` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`id`));
+  
+  
+  CREATE TABLE `db`.`estacion` (
+  `id` BIGINT(20) NOT NULL,
+  `descripcion` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`id`));
+  
+  
+   CREATE TABLE `db`.`air` (
+  `id` BIGINT(20) NOT NULL,
+  `id_provincia` BIGINT(20)NOT NULL,
+  `id_localidad` BIGINT(20)NOT NULL,
+  `estacion` BIGINT(20) NOT NULL,
+  `magnitud` BIGINT(20) NOT NULL,
+  `ano` int NOT NULL,
+  `mes` int NOT NULL,
+  `dia` int NOT NULL,
+  `H01` DECIMAL(5,2) NULL,
+  `H02` DECIMAL(5,2) NULL,
+  `H03` DECIMAL(5,2) NULL,
+  `H04` DECIMAL(5,2) NULL,
+  `H05` DECIMAL(5,2) NULL,
+  `H06` DECIMAL(5,2) NULL,
+  `H07` DECIMAL(5,2) NULL,
+  `H08` DECIMAL(5,2) NULL,
+  `H09` DECIMAL(5,2) NULL,
+  `H10` DECIMAL(5,2) NULL,
+  `H11` DECIMAL(5,2) NULL,
+  `H12` DECIMAL(5,2) NULL,
+  `H13` DECIMAL(5,2) NULL,
+  `H14` DECIMAL(5,2) NULL,
+  `H15` DECIMAL(5,2) NULL,
+  `H16` DECIMAL(5,2) NULL,
+  `H17` DECIMAL(5,2) NULL,
+  `H18` DECIMAL(5,2) NULL,
+  `H19` DECIMAL(5,2) NULL,
+  `H20` DECIMAL(5,2) NULL,
+  `H21` DECIMAL(5,2) NULL,
+  `H22` DECIMAL(5,2) NULL,
+  `H23` DECIMAL(5,2) NULL,
+  `H24` DECIMAL(5,2) NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `FK_AIR_MAGNITUD_ID` FOREIGN KEY (`magnitud`) REFERENCES `magnitud` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT `FK_AIR_ESTACION_ID` FOREIGN KEY (`estacion`) REFERENCES `estacion` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT `FK_AIR_LOCALIDAD_ID` FOREIGN KEY (`id_localidad`,`id_provincia`) REFERENCES `localidad` (`id`,`id_provincia`) ON UPDATE NO ACTION ON DELETE NO ACTION);
+  
+  
