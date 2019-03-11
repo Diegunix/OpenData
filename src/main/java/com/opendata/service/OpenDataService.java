@@ -2,9 +2,7 @@ package com.opendata.service;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.net.InetSocketAddress;
-import java.net.Proxy;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 import org.springframework.stereotype.Service;
 
@@ -21,7 +19,7 @@ import com.squareup.okhttp.Response;
 @Service
 public class OpenDataService {
 
-    private final String URL = "http://www.mambiente.munimadrid.es/opendata/horario.txt";
+    private static final String URL = "http://www.mambiente.munimadrid.es/opendata/horario.txt";
 
     private AirRepository airRepository;
 
@@ -31,8 +29,8 @@ public class OpenDataService {
 
     public void getData() throws IOException {
         String data = doRequest(URL);
-        String SEPARATOR = "\n";
-        String SEPARATOR_ROW = ",";
+        final String SEPARATOR = "\n";
+        final String SEPARATOR_ROW = ",";
         String[] rows = data.split(SEPARATOR);
 
         for (String row : rows) {
@@ -84,18 +82,9 @@ public class OpenDataService {
     }
 
     private String doRequest(String url) throws IOException {
-        String hostname = "10.1.0.222";
-        int port = 8080;
-        Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(hostname, port));
-
         OkHttpClient client = new OkHttpClient();
-        client.setProxy(proxy);
-
         Request request = new Request.Builder().url(url).get().addHeader("cache-control", "no-cache").build();
-
         Response response = client.newCall(request).execute();
-        String data = new String(response.body().string().getBytes(Charset.forName("UTF-8")));
-
-        return data;
+        return new String(response.body().string().getBytes(StandardCharsets.UTF_8));
     }
 }

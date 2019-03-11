@@ -6,7 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -27,8 +26,8 @@ public class Air {
     private long id;
 
     @ManyToOne
-    @JoinColumns({ @JoinColumn(name = "id_provincia", referencedColumnName = "id_provincia"),
-            @JoinColumn(name = "id_localidad", referencedColumnName = "id") })
+    @JoinColumn(name = "id_provincia", referencedColumnName = "id_provincia")
+    @JoinColumn(name = "id_localidad", referencedColumnName = "id") 
     private Localidad localidad;
     @ManyToOne
     @JoinColumn(name = "estacion")
@@ -44,74 +43,74 @@ public class Air {
     private int dia;
 
     @Column(nullable = true)
-    private BigDecimal H01;
+    private BigDecimal h01;
 
     @Column(nullable = true)
-    private BigDecimal H02;
+    private BigDecimal h02;
 
     @Column(nullable = true)
-    private BigDecimal H03;
+    private BigDecimal h03;
 
     @Column(nullable = true)
-    private BigDecimal H04;
+    private BigDecimal h04;
 
     @Column(nullable = true)
-    private BigDecimal H05;
+    private BigDecimal h05;
 
     @Column(nullable = true)
-    private BigDecimal H06;
+    private BigDecimal h06;
 
     @Column(nullable = true)
-    private BigDecimal H07;
+    private BigDecimal h07;
 
     @Column(nullable = true)
-    private BigDecimal H08;
+    private BigDecimal h08;
 
     @Column(nullable = true)
-    private BigDecimal H09;
+    private BigDecimal h09;
 
     @Column(nullable = true)
-    private BigDecimal H10;
+    private BigDecimal h10;
 
     @Column(nullable = true)
-    private BigDecimal H11;
+    private BigDecimal h11;
 
     @Column(nullable = true)
-    private BigDecimal H12;
+    private BigDecimal h12;
 
     @Column(nullable = true)
-    private BigDecimal H13;
+    private BigDecimal h13;
 
     @Column(nullable = true)
-    private BigDecimal H14;
+    private BigDecimal h14;
 
     @Column(nullable = true)
-    private BigDecimal H15;
+    private BigDecimal h15;
 
     @Column(nullable = true)
-    private BigDecimal H16;
+    private BigDecimal h16;
 
     @Column(nullable = true)
-    private BigDecimal H17;
+    private BigDecimal h17;
 
     @Column(nullable = true)
-    private BigDecimal H18;
+    private BigDecimal h18;
 
     @Column(nullable = true)
-    private BigDecimal H19;
+    private BigDecimal h19;
 
     @Column(nullable = true)
-    private BigDecimal H20;
+    private BigDecimal h20;
 
     @Column(nullable = true)
-    private BigDecimal H21;
+    private BigDecimal h21;
 
     @Column(nullable = true)
-    private BigDecimal H22;
+    private BigDecimal h22;
 
     @Column(nullable = true)
-    private BigDecimal H23;
+    private BigDecimal h23;
     
     @Column(nullable = true)
-    private BigDecimal H24;
+    private BigDecimal h24;
 }
