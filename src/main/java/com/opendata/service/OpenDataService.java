@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.opendata.dao.domain.Air;
@@ -16,7 +17,10 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class OpenDataService {
 
     private static final String URL = "http://www.mambiente.munimadrid.es/opendata/horario.txt";
@@ -27,7 +31,9 @@ public class OpenDataService {
         this.airRepository = airRepository;
     }
 
+    @Scheduled(cron = "0 0 7,15,23 * * *")
     public void getData() throws IOException {
+        log.info("Start data saved");
         String data = doRequest(URL);
         final String SEPARATOR = "\n";
         final String SEPARATOR_ROW = ",";
@@ -38,6 +44,7 @@ public class OpenDataService {
             Air air = parseFields(fields);
             airRepository.save(air);
         }
+        log.info("End data saved");
     }
 
     private Air parseFields(String[] fields) {
