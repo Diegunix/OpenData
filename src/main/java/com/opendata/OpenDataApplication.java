@@ -5,6 +5,7 @@ import org.springframework.boot.actuate.autoconfigure.metrics.MeterRegistryCusto
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.env.AbstractEnvironment;
 
 import io.micrometer.core.instrument.MeterRegistry;
 
@@ -13,6 +14,7 @@ import io.micrometer.core.instrument.MeterRegistry;
 public class OpenDataApplication {
 
     public static void main(String[] args) {
+        System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, "dev");
         SpringApplication.run(OpenDataApplication.class, args);
     }
 
